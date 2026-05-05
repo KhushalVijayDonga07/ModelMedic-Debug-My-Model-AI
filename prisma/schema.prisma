@@ -1,0 +1,80 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum Plan {
+  FREE
+  PRO
+  TEAM
+}
+
+enum Framework {
+  PYTORCH
+  KERAS
+  TENSORFLOW
+  SKLEARN
+  OTHER
+}
+
+enum Severity {
+  LOW
+  MEDIUM
+  HIGH
+  CRITICAL
+}
+
+enum ChatRole {
+  USER
+  ASSISTANT
+}
+
+model User {
+  id             String         @id @default(cuid())
+  clerkId        String         @unique
+  email          String
+  name           String
+  plan           Plan
+  diagnosesUsed  Int            @default(0)
+  createdAt      DateTime       @default(now())
+  diagnoses      Diagnosis[]
+  subscriptions  Subscription[]
+}
+
+model Diagnosis {
+  id               String        @id @default(cuid())
+  userId           String
+  title            String
+  modelArchitecture String
+  trainingLogs     String
+  framework        Framework
+  issuesFound      Json
+  fixSuggestions   Json
+  severity         Severity
+  createdAt        DateTime      @default(now())
+  user             User          @relation(fields: [userId], references: [id])
+  chatMessages     ChatMessage[]
+}
+
+model ChatMessage {
+  id           String    @id @default(cuid())
+  diagnosisId  String
+  role         ChatRole
+  content      String
+  createdAt    DateTime  @default(now())
+  diagnosis    Diagnosis @relation(fields: [diagnosisId], references: [id])
+}
+
+model Subscription {
+  id               String   @id @default(cuid())
+  userId           String
+  razorpaySubId    String
+  plan             Plan
+  status           String
+  currentPeriodEnd DateTime
+  user             User     @relation(fields: [userId], references: [id])
+}
