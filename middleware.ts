@@ -5,8 +5,9 @@ const isProtectedRoute = createRouteMatcher([
   "/diagnose(.*)",
   "/billing(.*)",
   "/api/diagnoses(.*)",
-  "/api/anthropic(.*)",
-  "/api/razorpay(.*)"
+  "/api/razorpay(.*)",
+  "/api/diagnose(.*)",
+  "/api/chat(.*)"
 ]);
 
 export default clerkMiddleware((auth, request) => {

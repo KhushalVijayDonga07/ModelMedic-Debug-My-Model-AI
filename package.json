@@ -12,8 +12,6 @@
     "prisma:migrate": "prisma migrate dev"
   },
   "dependencies": {
-    "@ai-sdk/anthropic": "^0.0.27",
-    "@anthropic-ai/sdk": "^0.32.1",
     "@clerk/nextjs": "^5.4.0",
     "@prisma/client": "^5.13.0",
     "@radix-ui/react-dialog": "^1.0.5",
@@ -21,7 +19,6 @@
     "@radix-ui/react-label": "^2.0.2",
     "@radix-ui/react-slot": "^1.0.2",
     "@supabase/supabase-js": "^2.45.0",
-    "ai": "^3.2.24",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",
     "lucide-react": "^0.469.0",

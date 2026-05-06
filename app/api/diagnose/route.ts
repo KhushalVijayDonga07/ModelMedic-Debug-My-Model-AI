@@ -15,7 +15,7 @@ const FREE_MONTHLY_LIMIT = 5;
 type ErrorResponse = {
   error: string;
   details?: unknown;
-  remainingUses?: number;
+  remainingUses?: number | null;
 };
 
 async function getOrCreateUser(

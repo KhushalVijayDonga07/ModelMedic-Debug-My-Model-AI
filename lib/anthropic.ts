@@ -1,13 +1,2 @@
-import Anthropic from "@anthropic-ai/sdk";
-
-const globalForAnthropic = globalThis as { anthropic?: Anthropic };
-
-export const anthropic =
-  globalForAnthropic.anthropic ??
-  new Anthropic({
-    apiKey: process.env.ANTHROPIC_API_KEY ?? ""
-  });
-
-if (process.env.NODE_ENV !== "production") {
-  globalForAnthropic.anthropic = anthropic;
-}
+// Anthropic client removed in favor of local diagnosis.
+export const anthropic = null;
